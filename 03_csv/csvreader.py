@@ -19,13 +19,31 @@ for job in occupations:
         dictionary[job[:char-num].strip(' \"')] = float(percent.strip(",\n "))
 #print(dictionary) #checks that the dictionary is created properly
 
-#checking stats
+#checking stats - setup
+data = {}
+for occupation in dictionary.keys():
+    data[occupation] = 0
 
 #choosing weighted occupation
-chosen = random.random() * dictionary['Total']
-#print(chosen) #verification step
-for occupation in dictionary.keys():
-    chosen -= dictionary[occupation]
-    if chosen <= 0:
-        print("Randomly selected occupation: " + occupation)
-        break
+def choose(verbose = False):
+    chosen = random.random() * dictionary['Total']
+    #print(chosen) #verification step
+    for occupation in dictionary.keys():
+        chosen -= dictionary[occupation]
+        if chosen <= 0:
+            if verbose:
+                print("Randomly selected occupation: " + occupation)
+            data[occupation] += 1 #gather data
+            data['Total'] += 1
+            break
+choose(verbose = True)
+
+#process stats
+def process(verbose = False):
+    for x in range(100000):
+        choose()
+    for occupation in dictionary.keys():
+        data[occupation] /= float(data['Total']) / 100
+        if verbose:
+            print(occupation + "\tweight: " + str(dictionary[occupation]) + "\tsample: " +str(data[occupation]))
+#process(verbose = True)
