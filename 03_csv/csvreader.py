@@ -17,6 +17,15 @@ for job in occupations:
     if percent.strip(garbage) == "": #if the percent is a valid float        
         #add the key/value pair to dictionary
         dictionary[job[:char-num].strip(' \"')] = float(percent.strip(",\n "))
-print(dictionary)
+#print(dictionary) #checks that the dictionary is created properly
+
+#checking stats
 
 #choosing weighted occupation
+chosen = random.random() * dictionary['Total']
+#print(chosen) #verification step
+for occupation in dictionary.keys().remove('Total'):
+    chosen -= dictionary[occupation]
+    if chosen <= 0:
+        print("Randomly selected occupation: " + occupation)
+        break
