@@ -24,7 +24,7 @@ for job in occupations:
 #choosing weighted occupation
 chosen = random.random() * dictionary['Total']
 #print(chosen) #verification step
-for occupation in dictionary.keys().remove('Total'):
+for occupation in dictionary.keys():
     chosen -= dictionary[occupation]
     if chosen <= 0:
         print("Randomly selected occupation: " + occupation)
