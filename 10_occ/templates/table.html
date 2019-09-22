@@ -1,20 +1,24 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html>
 	<head>
 		<title>{{title}}</title>
 	</head>
 	<body>
-		<h1>{{heading}}<h1>
-		<table>
-			<tr>
-				{% for head in tHead%}
-					<th>{{head}}</th>
+		<h1>{{heading}}</h1>
+		<p>Randomly selected occupation: {{occupation}}</p>
+		<table style="width:100%">
+		<tr>
+				{% for head in tHead %}
+				<th>{{head}}</th>
 				{% endfor %}
 			</tr>
-			{% for entry in list %}
-				<tr>
-					{% fo
-
+			{% for entry in entries %}
+			<tr>
+				{% for item in entry %}
+				<td>{{item}}</td>
+				{% endfor %}
+			</tr>
+			{% endfor %}
 		</table>
 
 	</body>

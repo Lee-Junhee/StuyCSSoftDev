@@ -44,7 +44,7 @@ def disp():
 @app.route("/occupyflaskst")
 def occupations():
     rows = []
-    with open('occupations.csv', 'r') as csvFile:
+    with open('data/occupations.csv', 'r') as csvFile:
         csvreader = csv.reader(csvFile)
         for row in csvreader:
             rows.append(row)
@@ -54,14 +54,24 @@ def occupations():
         key = item[0]
         value = float( item[1])
         dictionary[ key] = value
-
-    chosen = random.random() * dictionary['Total']
+    chosen = random.random() * float(rows[len(rows) - 1][1])
     #print(chosen) #verification step
     for occupation in dictionary.keys():
         chosen -= dictionary[occupation]
         if chosen <= 0:
             random_occupation =  occupation   
             break
+    
+    occList=[]
+    for occ in dictionary.keys():
+        occList.append((occ, dictionary[occ]))
+
+    return render_template("table.html",
+            title="Occupation Data",
+            heading="Occupations in the United States and Percentage of Workforce",
+            occupation=random_occupation,
+            tHead=['Occupation Title','Percentage of Workforce'],
+            entries=occList)
 
 if __name__ == "__main__":
     app.debug = True 
