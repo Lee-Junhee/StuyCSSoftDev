@@ -1,7 +1,7 @@
-#Junhee Lee
+#Junhee Lee, Michael Lin
 #SoftDev1 pd1
-#K08 -- Lemme Flask You Sump'n
-#2019-09-18
+#K10 -- Jinja Tuning
+#2019-09-20
 
 from flask import Flask, render_template
 import csv,random
