@@ -1,7 +1,7 @@
-#Junhee Lee, Amanda Zheng
+#Amanda Zheng, Junhee Lee, Team Jam
 #SoftDev1 pd1
-#
-#2019-09-
+#K12 -- Echo Echo Echo
+#2019-09-26
 
 from flask import Flask, render_template, request
 
@@ -20,13 +20,13 @@ def auth():
     print("***DIAG: request obj***")
     print(request)
     print("***DIAG:request.args***")
-    print(request.args)    
+    print(request.args)
     #print("***DIAG: request.args['user']***")
     #print(request.args['user'])
     #print("***DIAG: request.headers***")
     #print(request.headers)
-    return "AAAAAAAAAAAAAA"
+    return render_template("submit.html",output=request.args.get('user'))
 
 if __name__ == "__main__":
-    app.debug = True 
+    app.debug = True
     app.run()
