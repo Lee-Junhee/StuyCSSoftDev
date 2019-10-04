@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{title}} - {{team}}</title>
+	</head>
+	<body>
+		<h4>
+			Team Name: {{team}}
+			<br>
+			Roster: {{names}}
+		</h4>
+		<br>
+		{% for item in get_flashed_messages() %}
+		{{item}} <br>
+		{% endfor %}
+		<br>
+		{% block body %}
+		{% endblock %}
+		<br>
+		<br>
+		<br>
+		copyright Plumbus, 2019
+</html>
