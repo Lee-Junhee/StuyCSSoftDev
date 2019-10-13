@@ -1,6 +1,6 @@
-#Pratham Rawat
+#Junhee Lee, Pratham Rawat
 #SoftDev pd1
-#K17 :: No
+#K18 :: No
 #Oct 2019
 
 import sqlite3   #enable control of an sqlite database
@@ -14,15 +14,23 @@ c = db.cursor()               #facilitate db ops
 
 #==========================================================
 
-studentData = c.execute("SELECT students.name, courses.mark FROM students,courses WHERE students.id = courses.id;")
-sums = {}
-for record in c.fetchall():
-    
-    
-def insertData(courseID, student, mark):
-    c.execute("SELECT id FROM students WHERE name = {}".format(student))
-    id = c.fetchone()[1]
-    c.execute("INSERT INTO courses(code, mark, id) VALUES {} {} {};".format(courseID, mark, id)
+get = "SELECT students.name, courses.mark FROM students,courses WHERE students.id = courses.id;"
+stuData = {}
+for row in c.execute(get):
+    stuData[row[0]] = []
+for row in c.execute(get):
+    stuData[row[0]].append(row[1])
+#print(stuData)
+
+stuAvg = {}
+for key in stuData.keys():
+    stuAvg[key] = sum(stuData[key]) / len(stuData[key])
+print(stuAvg)
+
+#def insertData(courseID, student, mark):
+#    c.execute("SELECT id FROM students WHERE name = {}".format(student))
+#    id = c.fetchone()[1]
+#    c.execute("INSERT INTO courses(code, mark, id) VALUES {} {} {};".format(courseID, mark, id)
 
 #==========================================================
 db.commit() #save changes
