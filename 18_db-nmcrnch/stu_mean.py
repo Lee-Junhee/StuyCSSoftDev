@@ -14,19 +14,33 @@ c = db.cursor()               #facilitate db ops
 
 #==========================================================
 
-get = "SELECT students.name, courses.mark FROM students,courses WHERE students.id = courses.id;"
+get = "SELECT students.name, courses.mark, students.id FROM students,courses WHERE students.id = courses.id;"
 stuData = {}
+stuId = {}
 for row in c.execute(get):
     stuData[row[0]] = []
 for row in c.execute(get):
     stuData[row[0]].append(row[1])
+    stuId[row[0]] = row[2]
 #print(stuData)
 
 stuAvg = {}
-for key in stuData.keys():
+for key in stuId.keys():
     stuAvg[key] = sum(stuData[key]) / len(stuData[key])
-print(stuAvg)
+#print(stuAvg)
 
+for name in stuId.keys():
+    row = "{}({}): {}".format(name, stuId[name], stuAvg[name])
+    print(row)
+
+cmd = "DROP TABLE stu_avg;"
+c.execute(cmd)
+cmd = "CREATE TABLE stu_avg(id INTEGER PRIMARY KEY, avg INTEGER);"
+c.execute(cmd)
+
+for name in stuData.keys():
+    cmd = "INSERT INTO stu_avg VALUES ({}, {});".format(stuId[name], stuAvg[name])
+    c.execute(cmd)
 #def insertData(courseID, student, mark):
 #    c.execute("SELECT id FROM students WHERE name = {}".format(student))
 #    id = c.fetchone()[1]
