@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/css/foundation.min.css">
 
 		<!-- Compressed JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.3/dist/js/foundation.min.js" integrity="sha256-mRYlCu5EG+ouD07WxLF8v4ZAZYCA6WrmdIXyn1Bv9Vk= sha384-KzKofw4qqetd3kvuQ5AdapWPqV1ZI+CnfyfEwZQgPk8poOLWaabfgJOfmW7uI+AV sha512-0gHfaMkY+Do568TgjJC2iMAV0dQlY4NqbeZ4pr9lVUTXQzKu8qceyd6wg/3Uql9qA2+3X5NHv3IMb05wb387rA==" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<div class="grid-container">
@@ -15,23 +15,19 @@
 					<h1>Heading made using the 12-cell div</h1>
 				</div>
 			</div>
+			<hr>
 			<div class="grid-x grid-padding-x">
 				<div class="large-4 medium-4 cell">
-					<div class="callout">
-					<p>This cell takes up a third of the row in medium and large displays, the full row in small displays. It also has the 'callout' class.</p>
-					</div>
+					<p>This is a large-4 medium-4 cell</p>
 				</div>
-				<div class="large-4 medium-6 small-9 cell">
-					<div class="primary callout">	
-					<p>This cell takes up a third of the row in large screens, a half in medium screens, and three-quarters of a small screens. It also uses the 'primary callout' class.</p>
-					</div>
+				<div class="large-4 medium-4 cell">
+					<p>This is also a large-4 medium-4 cell</p>
 				</div>
-        				<div class="large-4 medium-2 small-3 cell">
-					<p>This cell takes up a third of the row in large, a sixth in medium, and a quarter in small screens.</p>
+				<div class="large-4 medium-4 cell">
+					<p>This is also a large-4 medium-4 cell</p>
 				</div>
 			</div>
-			<div class="grid-x grid-padding-x">
-			</div>
+			<hr>
 			<div class = "grid-x grid-padding-x">
 				<div class="cell medium-8">
 					This is a medium-8 block. Notice that this block is larger than the other?
@@ -40,6 +36,7 @@
 					<p style="width:40vw;">This is a medium-4 cell block, but you can scroll horizontally! Wow!</p>
 				</div>
 			</div>
+			<hr>
 			<div class = "grid-x grid-padding-x">
 				<div class="cell medium-3">
 					This is a medium-3 block!
@@ -64,7 +61,31 @@
 					</div>
 				</div>
 				<div class="cell medium-8 small-6">
-					<!-- insert form and buttons here -->
+					Here are some forms!
+				<label>
+					Insert text here!
+					<textarea placeholder="Hello"></textarea>
+				</label>
+				<label>
+					Insert numbers here!
+					<input type="number" value="0">
+				</label>
+				<label>
+					Select one of these!
+					<select>
+					  <option value="one">one</option>
+					  <option value="of">of</option>
+					  <option value="these">these</option>
+					  <option value="!">!</option>
+					</select>
+				</label>
+				 <label>Use this for passwords!
+					<input type="password" aria-describedby="passwordHelpText">
+				</label>
+          <p><a href="#" class = "button">Button</a></p><br>
+          Want to upload a file?<br>
+			<label for="exampleFileUpload" class="button">Upload File Here</label>
+			<input type="file" id="exampleFileUpload" class="show-for-sr">
 				</div>
 			</div>
 		</div>
