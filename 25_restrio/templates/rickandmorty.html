@@ -1,0 +1,34 @@
+{% extends "_base.html" %}
+
+{% block content %}
+    <center>
+        <h1>Rick and morty API</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>name</td>
+                    <td>status</td>
+                    <td>species</td>
+                    <td>type</td>
+                    <td>gender</td>
+                    <td>origin</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for chr in data['results'] %}
+                    <tr>
+                        <td>{{ chr['id']}}</td>
+                        <td>{{ chr['name']}}</td>
+                        <td>{{ chr['status']}}</td>
+                        <td>{{ chr['species']}}</td>
+                        <td>{{ chr['type']}}</td>
+                        <td>{{ chr['gender']}}</td>
+                        <td>{{ chr['origin']['name']}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </center>
+{% endblock content %}
