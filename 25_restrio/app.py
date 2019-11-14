@@ -24,6 +24,16 @@ def currency():
     except BaseException:
         return render_template('error.html')
 
+@app.route('/countries')
+def countries():
+    try:
+        data = json.loads(urllib.request.urlopen('https://restcountries.eu/rest/v2/').read())
+
+        return render_template('countries.html', data=data)
+
+    except BaseException:
+        return render_template('error.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
