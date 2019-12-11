@@ -2,20 +2,20 @@
 
 {% block content %}
     <center>
-        <h1>Pokemon API</h1>
+        <h1>USD exhange rates</h1>
 
         <table>
             <thead>
                 <tr>
-                    <td>id</td>
-                    <td>name</td>
+                    <td>currency</td>
+                    <td>rate</td>
                 </tr>
             </thead>
             <tbody>
-                {% for chr in data['results'] %}
+                {% for key, value in data['rates'].items() %}
                     <tr>
-                        <td>{{ chr['id']}}</td>
-                        <td>{{ chr['id']['name']}}</td>
+                        <td>{{ key }}</td>
+			<td>{{ value }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
