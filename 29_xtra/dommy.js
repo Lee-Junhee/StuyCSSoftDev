@@ -1,57 +1,87 @@
-var changeHeading = function(e) {
-	var h = document.getElementById("h");
-	var header = (e['type'] == 'mouseout')? 'Hello World': e['target'].innerHTML;
-	h.innerHTML = header;
-};
-
-var removeItem = function(e) {
-	e['target'].remove();
-};
+//Pratham Rawat and Junhee Lee
+// SoftDev1 pd1
+// K29 -- Sequential Progression, Search of the Witch
+// 2020-15-10
 
 var lis = document.getElementsByTagName("li");
 
+var mouseover = function(e) {
+
+	console.log(e['target'].innerHTML);
+	document.getElementById("h").innerHTML = e['target'].innerHTML;
+};
+
+var mouseout = function(e) {
+	console.log(e['target'].innerHTML);
+	document.getElementById("h").innerHTML = "Hello World!";
+};
+
+var click = function(e) {
+	console.log(e['target'].innerHTML);
+	e['target'].remove();
+};
+
 for(var i = 0; i < lis.length; i++) {
-	lis[i].addEventListener("mouseover", changeHeading); 
-	lis[i].addEventListener("mouseout", changeHeading);
-	lis[i].addEventListener("click", removeItem);
+	lis[i].addEventListener("mouseover", mouseover);
+	lis[i].addEventListener("mouseout", mouseout);
+	lis[i].addEventListener("click", click);
 };
 
-var addItem = function(e) {
-	var list = document.getElementById('thelist');
-	var item = document.createElement('li');
-	item.innerHTML = "WORD";
-	item.addEventListener('click', removeItem);
-	list.appendChild(item);
+document.getElementById("b").addEventListener("click", function(e) {
+	var newItem = document.createElement("li");
+	newItem.innerHTML = "WORD";
+	document.getElementById("thelist").appendChild(newItem);
+	newItem.addEventListener("mouseover", mouseover);
+	newItem.addEventListener("mouseout", mouseout);
+	newItem.addEventListener("click", click);
+	newItem.scrollIntoView();
+});
+
+var fibarray = [0n,1n,1n];
+var fibcounter = 0;
+var fibonacci = function(n) {
+  if (n < 3) return fibarray[n];
+  if (fibarray[n]) return fibarray[n];
+  fibarray[n] = fibonacci(n - 1) + fibonacci(n - 2);
+  return fibarray[n]
 };
 
-var button = document.getElementById("b");
-button.addEventListener('click', addItem);
+var fibonacciButWorse = function(first, second, n) {
+	if(n == 0) return second;
+	return fibonacciButWorse(second, first + second, n - 1);
+}
 
-var fib = function(n) {
-	if (n < 2) {
-		return 1;
-	}else {
-		return fib(n - 1) + fib(n - 2);
+var primeArray = [3n]
+var primeCounter = 0;
+var nextPrime = function() {
+	var n = BigInt(primeArray[primeCounter]) + 2n;
+	while(!isPrime(n)) {
+		n += 2n;
 	}
-};
+	primeArray.push(n);
+	primeCounter += 1;
+	console.log(n);
+	return n;
+}
 
-var addFib = function(e) {
-	console.log(e);
-	var fiblist = document.getElementById("fiblist");
-	var elements = fiblist.getElementsByTagName("li");
-	var entry = document.createElement("li");
-	entry.innerHTML = fib(elements.length);
-	fiblist.appendChild(entry);
-};
+var isPrime = function(n) {
+	for(var i = 2n; i < n / 2n; i += 1n) {
+		if(n % i == 0) return false;
+	}
+	return true;
+}
 
-var addFib2 = function(e) {
-	console.log(e);
-	var fiblist = document.getElementById("fiblist");
-	var elements = fiblist.getElementsByTagName("li");
-	var entry = document.createElement("li");
-	entry.innerHTML = (elements.length < 2)? 1: Number(elements[elements.length - 1].innerHTML) + Number(elements[elements.length - 2].innerHTML);
-	fiblist.appendChild(entry);
-};
+document.getElementById("fb").addEventListener("click", function(e) {
+	var newItem = document.createElement("li");
+	newItem.innerHTML = fibonacci(fibcounter);
+	fibcounter++;
+	document.getElementById("fiblist").appendChild(newItem);
+	newItem.scrollIntoView();
+});
 
-var fb = document.getElementById("fb");
-fb.addEventListener("click", addFib2);
+document.getElementById("pb").addEventListener("click", function(e) {
+	var newItem = document.createElement("li");
+	newItem.innerHTML = nextPrime();
+	document.getElementById("primelist").appendChild(newItem);
+	newItem.scrollIntoView();
+});
