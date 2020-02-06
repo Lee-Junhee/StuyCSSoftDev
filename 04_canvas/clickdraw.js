@@ -1,3 +1,9 @@
+/*
+ * Joseph Lee, Junhee Lee
+ * SoftDev2 pd1
+ * K04 :: Canvas
+ * 2020-02-06
+ */
 const RECT_WIDTH = 100;
 const RECT_HEIGHT = 100;
 const DOT_RADIUS = 5;
