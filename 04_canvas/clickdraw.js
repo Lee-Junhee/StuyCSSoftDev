@@ -1,5 +1,5 @@
 /*
- * Joseph Lee, Junhee Lee
+ * jlee(01 + 02): Joseph Lee, Junhee Lee
  * SoftDev2 pd1
  * K04 :: Canvas
  * 2020-02-06
