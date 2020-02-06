@@ -4,6 +4,23 @@
  * K05 :: Canvas pt.2: Electric Boogaloo
  * 2020-02-07
  */
+
+/*
+ * e.preventDefault()
+ * 	prevents the default behavior of an event
+ * 	e.g. can prevent the submit button from submitting the form
+ *
+ * ctx.beginPath()
+ * 	starts a path trace that can be committed to the drawing later
+ * 	
+ * e.offsetX
+ * 	retrieves the mouse x position relative to the canvas
+ *
+ * e.offsetY
+ * 	retrieves the mouse y position relative to the canvas
+ * 	
+ */
+
 const RECT_WIDTH = 100;
 const RECT_HEIGHT = 100;
 const DOT_RADIUS = 5;
