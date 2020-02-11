@@ -8,7 +8,6 @@
 const DOT_RADIUS = 2;
 const c = document.getElementById("playground");
 const ctx = c.getContext("2d");
-ctx.fillStyle = "#ffffff";
 
 const clearCanvas = function() {
 	console.log("clearing drawings");
