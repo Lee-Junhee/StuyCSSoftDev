@@ -12,6 +12,7 @@ const ctx = c.getContext("2d");
 const clearCanvas = function() {
 	console.log("clearing drawings");
 	ctx.clearRect(0,0,c.width,c.height);
+	ctx.closePath();
 }
 
 const draw = function(e) {
