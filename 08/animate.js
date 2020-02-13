@@ -10,6 +10,7 @@
 var timestamp = 0;
 const speed = 0.01;
 var currentFrame;
+var projectile = [-1, -1, 1, 1];
 
 
 //element initialization
@@ -22,8 +23,11 @@ const start = document.getElementById("enable");
 const stop = document.getElementById("disable");
 const emergency = document.getElementById("estop");
 
+//const logo = new Image();
+//logo.src = "";
+
 //animation code
-const animate = function() {
+const dot = function() {
 	ctx.clearRect(0, 0, 600, 600);
 	ctx.beginPath();
 	ctx.arc(300, 300, 300 * (1 + Math.sin(Math.PI * timestamp * speed)) / 2, 0, Math.PI * 2);
@@ -34,10 +38,40 @@ const animate = function() {
 	currentFrame = window.requestAnimationFrame(animate);
 }
 
-const enable = function() {
-	start.removeEventListener("click", enable);
+const propulse = function() {
+	ctx.clearRect(0, 0, 600, 600);
+	//ctx.drawImage();
+	ctx.arc(projectile[0], projectile[1], , 0, Math.PI * 2);
+	if (projectile[0] >= 600) {
+		projectile[3] = -1;
+	}
+	if (projectile[0] <= 0) {
+		projectile[3] = 1;
+	}
+	if (projectile[1] >= 600) {
+		projectile[4] = -1;
+	}
+	if (projectile[1] <= 0) {
+		projectile[4] = 1;
+	}
+	currentFrame = window.requestAnimationFrame();
+}
+	
+
+const auton = function() {
+	start.removeEventListener("click", auton);
 	stop.addEventListener("click", disable);
-	window.requestAnimationFrame(animate);
+	window.cancelAnimationFrame(currentFrame);
+	window.requestAnimationFrame(dot);
+}
+
+const teleop = function() {
+	start.addEventListener("click", enable);
+	stop.addEventListener("click", disable);
+	window.cancelAnimationFrame(currentFrame);
+	projectile[0] = Math.random() * 600;
+	projectile[1] = Math.random() * 600;
+	window.requestAnimationFrame(propulse);
 }
 
 const disable = function() {
@@ -51,10 +85,12 @@ const estop = function() {
 	disable();
 	start.removeEventListener("click", enable);
 	stop.removeEventListener("click", disable);
+	begin.removeEventListener("click", teleop);
 }
 
 
 
 //button event handlers
-start.addEventListener("click", enable);
+start.addEventListener("click", auton);
+begin.addEventListener("click", teleop);
 emergency.addEventListener("click", estop);
