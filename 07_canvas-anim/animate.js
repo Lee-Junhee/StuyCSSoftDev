@@ -6,7 +6,7 @@
  */
 
 
-//global variable initalization 
+//global variable initalization
 var timestamp = 0;
 
 
@@ -39,10 +39,3 @@ const estop = function() {
 //button event handlers
 animate.addEventListener("click", enable);
 emergency.addEventListener("click", estop);
-
-
-
-
-
-
-
