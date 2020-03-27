@@ -23,13 +23,14 @@ const draw = function(e) {
 	dot.setAttribute("fill", "black");
 	pic.appendChild(dot);
 	if (Math.min(mouse[0], mouse[1]) >= 0) {
-		console.log("continue");
+		//line code here, use mouse[0] for last x and mouse[1] for last y
 	}
 	mouse[0] = x;
 	mouse[1] = y;
 }
 
 const clear = function(e) {
+	mouse = [-1, -1];
 	pic.innerHTML = '';
 }
 
