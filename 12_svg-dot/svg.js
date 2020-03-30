@@ -1,3 +1,8 @@
+//Team B-Button Warriors - Eric Lam & Junhee Lee
+//SoftDev pd1
+//K12 -- Connect the Dots
+//2020-03-27
+
 //initialization
 const pic = document.getElementById("vimage");
 const button = document.getElementById("clear");
@@ -10,7 +15,6 @@ c.setAttribute("cy", 0);
 c.setAttribute("r", 100);
 c.setAttribute("fill", "red");
 c.setAttribute("stroke", "black");
-
 pic.appendChild(c); */
 
 const draw = function(e) {
@@ -23,16 +27,22 @@ const draw = function(e) {
 	dot.setAttribute("fill", "black");
 	pic.appendChild(dot);
 	if (Math.min(mouse[0], mouse[1]) >= 0) {
-		//line code here, use mouse[0] for last x and mouse[1] for last y
-	}
+		let line = document.createElementNS('http://www.w3.org/2000/svg','line');
+		line.setAttribute('x1', mouse[0]);
+		line.setAttribute('x2', x);
+		line.setAttribute('y1', mouse[1]);
+		line.setAttribute('y2', y);
+		line.setAttribute('stroke', 'black');
+		pic.appendChild(line);
+	};
 	mouse[0] = x;
 	mouse[1] = y;
-}
+};
 
 const clear = function(e) {
 	mouse = [-1, -1];
 	pic.innerHTML = '';
-}
+};
 
 pic.addEventListener("mousedown", draw);
 button.addEventListener("click", clear);
