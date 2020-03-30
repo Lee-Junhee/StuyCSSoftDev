@@ -19,15 +19,17 @@ c.setAttribute("stroke", "black");
 pic.appendChild(c); */
 
 const draw = function(e) {
-	let x = e.offsetX;
-	let y = e.offsetY;
-	let dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-	dot.setAttribute("cx", x);
-	dot.setAttribute("cy", y);
-	dot.setAttribute("r", DOT_RADIUS);
-	dot.setAttribute("fill", DOT_COLOR_0);
-	pic.appendChild(dot);
-	dot.addEventListener("mousedown", color);
+	if (e.target == pic){
+		let x = e.offsetX;
+		let y = e.offsetY;
+		let dot = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+		dot.setAttribute("cx", x);
+		dot.setAttribute("cy", y);
+		dot.setAttribute("r", DOT_RADIUS);
+		dot.setAttribute("fill", DOT_COLOR_0);
+		pic.appendChild(dot);
+		dot.addEventListener("mousedown", color);
+	}
 };
 
 const color = function(e) {
