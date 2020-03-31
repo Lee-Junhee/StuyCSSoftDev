@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<style>
+body{
+	background-color: black;
+	color: #39ff14;
+}
+.example{
+	background-color: gray;
+	color: black;
+	font-family: "Lucida Console", Courier, monospace;
+}
+.sample{
+	background-color: white;
+	color: black;
+}
+</style>
+	<head>
+		<title>SQL Injection TEDxSoftDev</title>
+	</head>
+	<body>
+		<h1>SQL Injection TEDxSoftDev</h1>
+		<h6>By Junhee Lee</h6>
+		<div id="desc">
+			<h3>What is SQL Injection?</h3>
+			<p>SQL injection is an attack targeting data-driven applications through the placement of malicious code, in the form of valid SQL statements, through user input.</p>
+		</div>
+		<div id="wrapper">
+			<h3>Types of SQL Injection</h3>
+			<div id="batch">
+				<h4>Batched SQL Statements</h5>
+				<p>For convenience purposes, SQL allows many commands to be input in one line, using semicolons (;) to denote where each statement ends.</p>
+				<p>This feature, however, can be exploited by users if the app has unfiltered text inputs that are being used directly in SQL command strings.</p>
+				<p>For example, if the SQL command were to be formed by using the following snippet of code:</p>
+				<div class="example">
+					cmd = 'SELECT * FROM users WHERE username = ' + request.form['username'] + ';'
+				</div>
+				<p>a malicious user could simply input the following in order to destroy the functionality of the app for all users</p>
+				<div class="sample">
+					<form>
+						<b>Login</b><br>
+						Username: <input type="text" name="username" value='""; DROP TABLE users'><br>
+						Password: <input type="password" name="password">
+					</form>
+				</div>
+				<p>Thankfully, python's sqlite3 module helps prevent batched statement attacks by only allowing one command to be executed per execute() statement, reducing the need to worry about this type of SQL attack.</p>
+			</div>
+			<div id="or">
+				<h4>OR Based SQL Injection</h4>
+				<p>SQL supports logical operators such as AND and OR. However, improper or no filtering of input allows users to access and abuse such mechanics.</p>
+				<p>The main issue with this is that it is easy to come up with an OR statement that always returns TRUE, such as "1 = 1"</p>
+				<p>Therefore, password protection coded like this:</p>
+				<div class="example">
+					cmd = "SELECT * FROM users WHERE username='" + request.form['username'] + "' AND password ='" + request.form['password'] + "';"
+					c.execute(cmd)
+				</div>
+				<p>can easily be bypassed by entering the password input as follows:</p>
+				<div class="sample">
+					<form>
+						<b>Login</b><br>
+						Username: <input type="text" name="username" value="admin"><br>
+						Password: <input type="text" name="password" value="' OR 1=1">
+					</form>
+				</div>
+				<p>due to the fact that 1=1 always returns TRUE, meaning that the password check is irrelevant, as the check for the password always returns TRUE.</p>
+				<p>Fixing this issue does require some work on the code end, but sqlite3 again has you covered, provided that you use the right syntax. Should you choose to use the other parameters for c.execute(), you can leave question marks (?) in place of the user inputs, and add the user inputs as separate arguments for execute() in the order of the question marks.<p>
+				<p>Then the python code becomes:</p>
+				<div class="example">
+					cmd = "SELECT * FROM users WHERE username='?' AND password='?';"
+					c.execute(cmd, request.form['username'], request.form['password'])
+				</div>
+				<p>The execute() command will automatically filter the arguments passed and help prevent SQL Injection attacks! ^^</p>
+			</div>
+		</div>
+	</body>
+</html>
