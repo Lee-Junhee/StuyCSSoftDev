@@ -40,6 +40,7 @@ const color = function() {
 };
 
 const die = function() {
+	projectileData[this.id] = -1;
 	this.removeEventListener('mousedown', die);
 	this.setAttribute('fill', DOT_COLOR_0);
 	let x_range = bbox.width - 2 * DOT_RADIUS;
@@ -99,8 +100,16 @@ const clear = function() {
 	pic.innerHTML = '';
 };
 
+const resize = function() {
+	dots = document.getElementsByTagName("circle");
+	for (let dot of dots) {
+		dot.setAttribute("r", Math.floor(1 + Math.random() * DOT_RADIUS));
+	}
+};
+
 pic.addEventListener("mousedown", draw);
 move.addEventListener("click", anim);
 button.addEventListener("click", clear);
+xtra.addEventListener("click", resize)
 
 propulse();
