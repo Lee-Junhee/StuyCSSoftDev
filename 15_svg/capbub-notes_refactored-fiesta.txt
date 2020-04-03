@@ -1,0 +1,16 @@
+1:
+prediction: when a table cell is clicked, a popup box with its contents will display
+notes: behaves as predicted
+
+2:
+prediction: when table cell clicked, popup boxes in following order: cell contents, row contents, table contents (i.e. order in which event listeners are added)
+notes: behaves as predicted
+
+3:
+prediction: same as 2, when the stopPropogation line uncommented, only cell popup
+notes: table happens first, because of the "true" argument
+
+4:
+prediction: outer to inner popup boxes because of the "true" argument
+notes: seems to behave as predicted
+however, on further inspection, it just goes from outer to inner, regardless of order
