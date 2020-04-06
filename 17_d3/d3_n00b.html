@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--D3 demo: hardcoded bars removed, to be generated fr data-->
+<!--
+    Can yield a horizontal bar chart if properly bound to data
+    (steelblue bars, white number overlays)
+    ...but will yield only blank page at first.
+  -->
+<!--
+	Benjamin Avrahami, Junhee Lee
+	SoftDev2 pd9, 1
+	K17 :: Deeper into D3
+	2020-04-06    
+-->
+
+<style>
+  .chart div {
+  font: 10px sans-serif;
+  background-color: steelblue;
+  text-align: right;
+  padding: 3px;
+  margin: 1px;
+  color: white;
+  }
+</style>
+
+<div class="chart">
+</div>
+
+<script src="http://d3js.org/d3.v5.min.js"
+	charset="utf-8"></script>
+
+<!--
+    Entering the following commands via console will 
+    incrementally re-create your hardcoded chart...
+
+    //Init your data:
+    var data = [4, 8, 15, 16, 23, 42];
+    /*
+    	returns undefined
+	data is now initialized to an array containing the given values
+    */
+
+    //Select your chart.
+    var chart = d3.select(".chart");
+    /*
+    	returns undefined
+	chart is now initialized to an Object that represents the div with the id "chart"
+    */
+
+    //Prepare for data join.
+    var bar = chart.selectAll("div");
+    /* 
+    	returns undefined
+	bar is now initialized to an Object that contains a NodeList (currently empty)
+    */
+    (this defines selection to which you will join data)
+
+    //Join your data.
+    var barUpdate = bar.data(data);
+    /*
+    	returns undefined
+	barUpdate is initialized to an Object that contains an array of Objects, each with one of the elements of data
+    */
+
+    //Instantiate new elements by appending to the “enter selection.”
+    var barEnter = barUpdate.enter().append("div");
+    /*
+    	returns undefined
+	there are blue bars visible whose count corresponds to the length of data. These bars stretch the whole screen.
+	barEnter is initialized to an Object that contains an array, containing divs, with each div having a __data__ property that corresponds to one of the elements of data
+	barUpdate seems unchanged
+    */
+    //use var barEnter = barUpdate.join("div") instead
+
+
+    =========================================================
+    //Transitions:
+    	barEnter.transition()
+	  .duration(1000)
+	  .style("width", d => `${d}0px`)
+	  .text(d => d)
+    /* takes care of both the width and the text. */
+    =========================================================
+
+    //Set width of each bar proportional to its data value.
+    barEnter.style("width", function(d) {
+    return d * 10 + "px"; });
+    /*
+    	returns an Object containing the divs that are the bars
+	the divs in barEnter are updated
+	the width of the divs are changed to match the data
+    */
+
+
+    //Label each bar.
+    barEnter.text(function(d) { return d; });
+    /*
+    	returns an Object containing the divs that are the bars
+	the divs in barEnter are updated
+	the bars now contain text that displays their data
+    */
+  -->
+  
