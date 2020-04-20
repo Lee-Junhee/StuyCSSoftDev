@@ -22,7 +22,7 @@ def load():
     dataset = dict()
     for data in raw:
         dataset[data[2]] = int(data[3]) + int(data[5])
-    return json.dumps(dataset)
+    return dataset
 
 
 if __name__ == '__main__':
