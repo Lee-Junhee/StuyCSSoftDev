@@ -11,6 +11,7 @@ render = function() {
     $.ajax({
         method: 'POST',
         url: '/data',
+        data: {'year': year},
         sucess: function(raw) {
             data = []
             for (var key in raw) {
