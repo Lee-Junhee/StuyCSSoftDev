@@ -12,7 +12,7 @@ render = function() {
         method: 'POST',
         url: '/data',
         data: {'year': year},
-        sucess: function(raw) {
+        success: function(raw) {
             console.log(raw);
             data = []
             for (var key in raw) {
@@ -27,7 +27,7 @@ render = function() {
                 .style('width', d=> `${d[1]}px`)
                 .text(d => d[0]);
             heading.innerHTML = `${year} SAT Scores by State`;
-            button.innerHTML = 'Transition'
+            button.innerHTML = 'Transition';
             year += 1;
         }
     });
