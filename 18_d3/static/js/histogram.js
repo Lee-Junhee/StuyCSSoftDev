@@ -16,7 +16,7 @@ render = function() {
             console.log(raw);
             data = []
             for (var key in raw) {
-                data.append((key, raw[key]));
+                data.push((key, raw[key]));
             }
             d3.select('.chart')
               .selectAll('div')
