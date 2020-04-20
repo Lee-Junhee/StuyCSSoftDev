@@ -13,6 +13,7 @@ render = function() {
         url: '/data',
         data: {'year': year},
         sucess: function(raw) {
+            console.log(raw);
             data = []
             for (var key in raw) {
                 data.append((key, raw[key]));
