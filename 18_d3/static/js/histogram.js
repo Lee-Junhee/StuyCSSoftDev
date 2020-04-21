@@ -13,8 +13,7 @@ const render = function() {
         url: '/data',
         data: {'year': year},
         success: function(raw) {
-            console.log(raw);
-            data = []
+            var data = []
             for (var key in raw) {
                 data.push((key, raw[key]));
             }
