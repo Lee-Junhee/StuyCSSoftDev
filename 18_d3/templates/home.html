@@ -12,11 +12,22 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <!-- d3 -->
         <script src="http://d3js.org/d3.v5.min.js"></script>
+        <style>
+            .chart div {
+            width: 0px;
+            font: 10px sans-serif;
+            background-color: steelblue;
+            text-align: right;
+            padding: 3px;
+            margin: 1px;
+            color: white;
+            }
+          </style>
     </head>
     <body>
         <h1 id='heading'></h1>
-        <div id='chart'></div>
+        <div class='chart'></div>
         <button id='button'>Render</button>
-        <script src='/static/js/histogram.js'></script>
+        <script src='/static/js/bar.js'></script>
     </body>
 </html>
