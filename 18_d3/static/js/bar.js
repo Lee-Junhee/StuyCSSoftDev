@@ -16,7 +16,7 @@ const update = function(data) {
       .transition()
         .duration(500)
         .style('width', d => `${d[1]}px`)
-        .text(d => d[0]);
+        .text(d => `${d[0]} - ${d[1]}`);
 };
 
 const render = function() {
