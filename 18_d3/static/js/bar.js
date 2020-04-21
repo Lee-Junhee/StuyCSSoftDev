@@ -8,8 +8,7 @@ const button = document.getElementById('button');
 const heading = document.getElementById('heading');
 
 const update = function(data) {
-    console.log('hi');
-    console.log(data);
+
     d3.select('.chart')
       .selectAll('div')
       .data(data)
@@ -28,7 +27,7 @@ const render = function() {
         success: function(raw) {
             var d = [];
             for (var key in raw) {
-                d.push((key, raw[key]));
+                d.push([key, raw[key]]);
             }
             update(d);
             heading.innerHTML = `${year} SAT Scores by State`;
